@@ -9,7 +9,7 @@ const app = express()
 
 app.use(express.json())
 app.use(cors()) // fix security issues header 
-let val = null
+let array = []
 // app.use(bodyParser.json())
 // app.use(.urlencoded({extends:false}))
 // app.use(bodyParser());
@@ -17,17 +17,18 @@ let val = null
 
 
 app.post('/post',(req,res)=>{
-    val = req.body
-    console.log(val)
+    let value = req.body
+    array.push(value)
+    console.log(value.name + ' was recoded to the array')
     res.send('succeess !!! ')
 })
 
 
 app.get('/',(req,res)=>{
- res.json(val)
+ res.json(array)
    
 })
 
-app.listen(process.env.PORT || 8080,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log(`the server is running  `)
 })
